@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>git_for_one.md</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+<style>
+/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+	font-size: var(--vscode-markdown-font-size, 14px);
+	padding: 0 26px;
+	line-height: var(--vscode-markdown-line-height, 22px);
+	word-wrap: break-word;
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-light.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-dark.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left-width: 5px;
+	border-left-style: solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 1em;
+	line-height: 1.357em;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+pre code {
+	color: var(--vscode-editor-foreground);
+	tab-size: 4;
+}
+
+/** Theming */
+
+.vscode-light pre {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+</style>
+
+<style>
+/* Tomorrow Theme */
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+
+/* Tomorrow Comment */
+.hljs-comment,
+.hljs-quote {
+	color: #8e908c;
+}
+
+/* Tomorrow Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+	color: #c82829;
+}
+
+/* Tomorrow Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+	color: #f5871f;
+}
+
+/* Tomorrow Yellow */
+.hljs-attribute {
+	color: #eab700;
+}
+
+/* Tomorrow Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+	color: #718c00;
+}
+
+/* Tomorrow Blue */
+.hljs-title,
+.hljs-section {
+	color: #4271ae;
+}
+
+/* Tomorrow Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+	color: #8959a8;
+}
+
+.hljs {
+	display: block;
+	overflow-x: auto;
+	color: #4d4d4c;
+	padding: 0.5em;
+}
+
+.hljs-emphasis {
+	font-style: italic;
+}
+
+.hljs-strong {
+	font-weight: bold;
+}
+</style>
+
+<style>
+/*
+ * Markdown PDF CSS
+ */
+
+ body {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+	padding: 0 12px;
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+code {
+	font-size: 14px;
+	line-height: 19px;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #C9AE75; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+</style>
+
+<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+</head>
+<body>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: document.body.classList.contains('vscode-dark') || document.body.classList.contains('vscode-high-contrast')
+          ? 'dark'
+          : 'default'
+    });
+  </script>
+<h1 id="git-%D0%B4%D0%BB%D1%8F-%D0%B8%D0%BD%D0%B4%D0%B8%D0%B2%D0%B8%D0%B4%D1%83%D0%B0%D0%BB%D1%8C%D0%BD%D0%BE%D0%B3%D0%BE-%D0%BF%D1%80%D0%BE%D0%B5%D0%BA%D1%82%D0%B0">Git для индивидуального проекта</h1>
+<p>Git используется практически везде в профессиональной разработке. Он позволяет совместно работать над одним проектом командам любого размера.</p>
+<p>Нужен ли Git в индивидуальных проектах, когда разработчик всегда работает один, и нет необходимости интегрировать код, написанный другими программистами?</p>
+<p>Что дает Git при использовании в индивидуальном проекте:</p>
+<ul>
+<li>Git в сочетании с облачным хранилищем таким как Github (есть и другие) обеспечивает безопасное и структурированное хранение кода. Вы не потеряете свои разработки при краже ноутбука или сбое жесткого диска</li>
+<li>в ходе разработки вы не боитесь что-нибудь сломать неудачными изменениями в самый неподходящий момент. С Git всегда можно откатиться на любую предыдущую стадию проекта</li>
+<li>вы можете создавать рабочие версии – релизы, непрерывно продолжая работу над разработкой</li>
+<li>у вас есть вся история проекта, вы не боитесь чистить код, удаляя куски, от которых вы отказались. Иногда бывает нужно вернуться к старым идеям, они все хранятся в истории проекта в git</li>
+<li>можно подключить к проекту других разработчиков, если потребуется</li>
+<li>Использование <em>github</em> легкий и удобный способ делиться своими разработками с другими людьми</li>
+</ul>
+<p>Git - довольно сложный инструмент, с множеством команд и опций. В больших проектах часто существует специальная роль по интеграции и поддержке исходного кода. Индивидуальному разработчику или маленькой команде обычно нужно знать всего несколько команд и понимать основные принципы работы Git.</p>
+<p>Разберем в этой статье, как можно работать одному разработчику в Git.</p>
+<h2 id="%D0%BE%D1%81%D0%BD%D0%BE%D0%B2%D0%BD%D1%8B%D0%B5-%D1%82%D0%B5%D1%80%D0%BC%D0%B8%D0%BD%D1%8B-%D0%B8-%D0%BF%D0%BE%D0%BD%D1%8F%D1%82%D0%B8%D1%8F">Основные термины и понятия</h2>
+<h3 id="%D1%87%D1%82%D0%BE-%D1%82%D0%B0%D0%BA%D0%BE%D0%B5-%D0%BA%D0%BE%D0%BC%D0%BC%D0%B8%D1%82-commit-%D0%B8-%D0%B2%D0%B5%D1%82%D0%BA%D0%B0-branch">Что такое <strong>коммит</strong> (commit) и <strong>ветка</strong> (branch)?</h3>
+<p>В Git исходники храняться в виде последовательноси изменений или коммитов.</p>
+<p>Cоздать <strong>коммит</strong>, значит зафиксировать изменения файлов в локальном репозитории.</p>
+<p>Коммитом называется множество изменений, которые были внесены в файлы по отношению к предыдущему состоянию.
+Каждый коммит содержить ссылку на коммит, который ему предшествовал. Таким образом можно отследить последовательность коммитов которые привели к текущему состоянию файлов. Последовательность коммитов можно представить в виде <strong>ветки</strong> (branch). Для того чтобы выделить ветку достаточно указать на ее последний коммит. В Git ветка это указатель на последний коммит в последовательности.</p>
+<p>В индивидуальной разработке я рекомендую поддерживать 2 ветки:</p>
+<ul>
+<li>Ветка с указателем <strong>master</strong> - основная ветвь в которой находится код в состояни, которое позволяет выдать его в &quot;производство&quot;. Минимальные требования к нему это его корректность с точки зрения синтаксиса языка программирования. Этот код должен успешно собираться и запускаться на исполнение. Коммиты v1 и v2.</li>
+<li>Ветка с указателем <strong>development</strong> - рабочая ветка, где происходит разработка. Коммиты А, В, С, D, E на рисунке.</li>
+</ul>
+<hr>
+<pre><code class="language-mermaid"><div class="mermaid">  flowchart LR;
+  I[initial_commit]-->v1;
+  I-->A
+  H(HEAD)-.-E
+  X(development)-.-E
+  subgraph релизы;
+    v1-->v2; 
+  end
+  Y(master)-.-v2
+  subgraph разработка
+   A-->B;
+  B-->C;
+  C-->D;
+  D-->E;
+  D-->|merge|v2
+  B-->|merge|v1
+  end
+</div></code></pre>
+<p>Метка <strong>HEAD</strong> всегда указывает на текущий последний коммит. То есть если мы находимся в ветке разработки, то HEAD == development.</p>
+<p>Коммиты в ветке релизов v1 и v2 получаются путем операции <strong>слияния</strong> (merge)
+При слиянии Git берет состояние файлов в ветке разработки (development) и пытается объединить с файлами в ветке релизов (master). Если в ветку мастер ничего не коммитилось помимо предыдущих слияний с веткой разработки, то эта операция очень простая и проходит автоматически. Если ветка мастер менялась независимо, например, там исправлялись ошибки помимо ветки разработки, то могут возникнуть конфликты. Их разрешение это отдельная тема.</p>
+<h2 id="%D0%BF%D0%BE%D1%81%D0%BB%D0%B5%D0%B4%D0%BE%D0%B2%D0%B0%D1%82%D0%B5%D0%BB%D1%8C%D0%BD%D0%BE%D1%81%D1%82%D1%8C-%D1%88%D0%B0%D0%B3%D0%BE%D0%B2-%D0%BF%D1%80%D0%B8-%D1%80%D0%B0%D0%B1%D0%BE%D1%82%D0%B5-%D0%B2-git">Последовательность шагов при работе в Git</h2>
+<pre><code class="language-mermaid"><div class="mermaid">  flowchart TD
+  S((Начало))-->Q{репозиторий\nуже\nсуществует?}
+  Q-->|Да|CL(1.1 Клонирование)
+  CL-->DM
+  Q-->|Нет|I(1. Инициализация Git)
+  I-->G(2. Подключение Github)
+  G-->IG(3. Cоздать .gitignore)
+  IG-->FC(4. Начальный коммит)
+  FC-->DM(5. создание ветви разрабоки \development\)
+  DM-->W(Работа над кодом)
+  W-->C(6. Commit)
+  C-->RDY{Код готов\nк релизу?}
+  RDY-->|Нет|W
+  RDY-->|Да|M(7. Merge c мастер-веткой)
+  M-->W
+</div></code></pre>
+<h3 id="1-%D0%B8%D0%BD%D0%B8%D1%86%D0%B8%D0%B0%D0%BB%D0%B8%D0%B7%D0%B0%D1%86%D0%B8%D1%8F-git">1. Инициализация Git</h3>
+<p>В командной строке из рабочей папки вводим:</p>
+<pre class="hljs"><code><div>git init <span class="hljs-comment"># создается папка .git в которой будет хранится локальная копия базы данных проекта</span>
+</div></code></pre>
+<h3 id="11-%D0%BA%D0%BB%D0%BE%D0%BD%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5">1.1 Клонирование</h3>
+<p>Если проект уже сущесвует в другой папке или на Github:</p>
+<pre class="hljs"><code><div>git <span class="hljs-built_in">clone</span> https://github.com/vbasov007/my-git-guide.git  <span class="hljs-comment">#создает папку my-git-guide с полной локальной копией репозитория. Формат команды git clone [path or url]  </span>
+</div></code></pre>
+<h3 id="2-%D0%BF%D0%BE%D0%B4%D0%BA%D0%BB%D1%8E%D1%87%D0%B5%D0%BD%D0%B8%D0%B5-github">2. Подключение Github</h3>
+<p>Открыть в браузере сайт <a href="github.com">Github</a>, создать новый проект и следовать инструкции по подключению нового репозитория.</p>
+<pre class="hljs"><code><div>git branch -M main <span class="hljs-comment"># автоматически созданая ветка в git называется master, здесь ее можно переименовать в main. Это не обязательное действие, название main для главной ветки проекта принято на Github. По умолчанию главная ветка называется master</span>
+git remote add origin https://github.com/vbasov007/test.git <span class="hljs-comment"># origin это псевдоним для url по которому находися удаленный репозиторий. Устанавливаем значение origin этой командой</span>
+git push -u origin main <span class="hljs-comment"># синхронизация ветки main (или master) c удаленным репозиторием</span>
+</div></code></pre>
+<h3 id="3-co%D0%B7%D0%B4%D0%B0%D1%82%D1%8C-gitignore">3. Coздать .gitignore</h3>
+<p>По умолчанию git пытается включить все файлы из рабочего каталога. Это не желательно, поскольку в рабочем каталоге могут находится много файлов, которые не относятся к исходным кодам проекта. Например, служебные файлы с конфигурацией среды разработки, файлы для создания виртуального окружения, входные и выходные данные программ.</p>
+<p>.gitignore - это простой текстовый файл, в каждой строке которого содержится шаблон файла или каталога, который необходимо проигнорировать</p>
+<p>Пример содержимого .gitignore для проекта на Python:</p>
+<pre class="hljs"><code><div>venv/
+__pycache__/
+*.py[cod]
+*$py.class
+*.log
+.idea/
+</div></code></pre>
+<p>создайте файл в редакторе и сохраните в рабочей папке.
+Имя файла &quot;.gitignore&quot; с точкой на первом месте.</p>
+<h3 id="4-%D0%BD%D0%B0%D1%87%D0%B0%D0%BB%D1%8C%D0%BD%D1%8B%D0%B9-%D0%BA%D0%BE%D0%BC%D0%BC%D0%B8%D1%82">4. Начальный коммит</h3>
+<p>Чтобы сделать коммит, нужно чтобы в дериктории были файлы. пустые директории git игнорирует. В проекте полезно иметь файл README.md где собрана информация о проекте</p>
+<pre class="hljs"><code><div><span class="hljs-built_in">echo</span> <span class="hljs-string">"# test"</span> &gt;&gt; README.md <span class="hljs-comment"># создание файла README.md</span>
+git init <span class="hljs-comment"># инициализация локльного репозитория</span>
+git add README.md <span class="hljs-comment"># добавляем файл README.md в индекс будущего коммита</span>
+git commit -m <span class="hljs-string">"first commit"</span> <span class="hljs-comment"># создаем начальный коммит</span>
+</div></code></pre>
+<h3 id="5-%D1%81%D0%BE%D0%B7%D0%B4%D0%B0%D0%BD%D0%B8%D0%B5-%D0%B2%D0%B5%D1%82%D0%BA%D0%B8-%D1%80%D0%B0%D0%B7%D1%80%D0%B0%D0%B1%D0%BE%D1%82%D0%BA%D0%B8-development">5. Создание ветки разработки (development)</h3>
+<p>Разработку лучше всего вести в отдельной ветке, для того чтобы не сломать уже работающий код и всегда иметь возможность выдать рабочий код независимо от состояния файлов в которых идет разработка.</p>
+<pre class="hljs"><code><div>git checkout -b development <span class="hljs-comment"># создать новую ветку development (или другое имя).  Ключ -b говорит, что нужно сразу переключится на новую ветку. Если ветка с таким именем уже существуюет, то git просто переключится на существующую ветку.</span>
+</div></code></pre>
+<h3 id="6-%D0%BA%D0%BE%D0%BC%D0%BC%D0%B8%D1%82">6. Коммит</h3>
+<p>Коммит это фиксация измнений файлов в репозитории git.</p>
+<pre class="hljs"><code><div>git status <span class="hljs-comment"># смотрим, какие файлы изменены и могут быть включены в индекс, убеждаемся, что находимся в правильной ветке, при необходимости редактируем .gitignore</span>
+git add . <span class="hljs-comment"># добавляем все изменения к коммиту</span>
+git commit -m <span class="hljs-string">"some comment"</span> <span class="hljs-comment"># создаем коммит, обязательно пишем комментарий к нему</span>
+git push <span class="hljs-comment"># синхронизирем с удаленным репозиторием</span>
+</div></code></pre>
+<h3 id="7-merge-c-%D0%BC%D0%B0%D1%81%D1%82%D0%B5%D1%80-%D0%B2%D0%B5%D1%82%D0%BA%D0%BE%D0%B9">7. Merge c мастер-веткой</h3>
+<p>Слияние или merge это операция при которой все изменение из development добавляются в мастер ветку. Если мы работаем индивидуально и в мастер ветку ничего без нас не коммитилось, то это очень простая операция. Если мастер ветка могла обнавляться другими участниками проекта, то нужно действовать более аккуратно! Этот процесс пока вне рамок данной статьи.</p>
+<p>Merge деается после того, как изменения в ветке develpment завершены и сделан коммит.</p>
+<pre class="hljs"><code><div>git checkout master <span class="hljs-comment"># переходим в ветку master. Смотрим за тем, чтобы переход произошел. git не даст перейти в другую ветку, если в текущей есть изменения, которые не сохранены. локальные файлы заменяются на из состояние из ветки master</span>
+git merge development <span class="hljs-comment"># запускаем операцию слияния, изменения из development интегрируются в master, созадется новый коммит</span>
+git push <span class="hljs-comment"># синхронизируем с удаленным репозиторием</span>
+git checkout development <span class="hljs-comment"># возвращаемся в рабочую ветку для продолжения работы над проектом</span>
+</div></code></pre>
+<h2 id="%D1%87%D0%B0%D1%81%D1%82%D0%BE-%D0%BD%D0%B5%D0%BE%D0%B1%D1%85%D0%BE%D0%B4%D0%B8%D0%BC%D1%8B%D0%B5-%D0%B4%D0%B5%D0%B9%D1%81%D1%82%D0%B2%D0%B8%D1%8F">Часто необходимые действия</h2>
+<h3 id="%D0%BF%D0%BE%D1%81%D0%BC%D0%BE%D1%82%D1%80%D0%B5%D1%82%D1%8C-%D1%82%D0%B5%D0%BA%D1%83%D1%89%D0%B8%D0%B9-%D1%81%D1%82%D0%B0%D1%82%D1%83%D1%81-%D0%B1%D0%B0%D0%B7%D1%8B-%D0%B4%D0%B0%D0%BD%D0%BD%D1%8B%D1%85">Посмотреть текущий статус базы данных</h3>
+<pre class="hljs"><code><div>git status <span class="hljs-comment"># показать текущий статус папки, наличие изменений в папке, которые могут быть добалвены в коммит</span>
+
+git <span class="hljs-built_in">log</span> <span class="hljs-comment"># показать историю коммитов</span>
+
+gitk --all <span class="hljs-comment"># запустить встроенный графический инструмент, показывающий все ветки и файлы в базе данных</span>
+</div></code></pre>
+<h3 id="%D1%83%D0%B4%D0%B0%D0%BB%D0%B8%D1%82%D1%8C-%D1%84%D0%B0%D0%B9%D0%BB-%D0%B8%D0%B7-%D0%BA%D1%8D%D1%88%D0%B0-%D0%BA%D0%BE%D0%BC%D0%BC%D0%B8%D1%82%D0%B0">Удалить файл из кэша коммита</h3>
+<p><strong>Ситуация:</strong> вы сделали &quot;git add .&quot; не заметив, что в рабочей папке есть файлы и папки, которые не должны попасть в базу.</p>
+<pre class="hljs"><code><div>git rm file.txt --cached <span class="hljs-comment"># удалит файл file.txt из последнего добавления командой git add</span>
+git rm -r --cached . <span class="hljs-comment"># удаляем все файлы добавленные в кэш коммита командой git add</span>
+</div></code></pre>
+<p>После этого рекомендуеся добавить имена ненужных файлов/папок в .gitignore</p>
+<h3 id="%D0%BE%D1%82%D0%BA%D0%B0%D1%82%D0%B8%D1%82%D1%8C-%D0%BD%D0%B0%D0%B7%D0%B0%D0%B4-%D0%BF%D0%BE%D1%81%D0%BB%D0%B5%D0%B4%D0%BD%D0%B8%D0%B9-%D0%BA%D0%BE%D0%BC%D0%BC%D0%B8%D1%82">Откатить назад последний коммит</h3>
+<p><strong>Ситуация:</strong> вы сделали &quot;git commit&quot; и поняли, что внесли ошибку или в коммит попали ненужные файлы.</p>
+<pre class="hljs"><code><div>git reset --soft HEAD~1 <span class="hljs-comment"># удалить последний коммит, локальные файлы не меняются</span>
+</div></code></pre>
+
+</body>
+</html>
